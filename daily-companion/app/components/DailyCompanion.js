@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Mic, MicOff, Sparkles, Brain, ListChecks,
-  CheckSquare, Lightbulb, Download, Loader2,
+  CheckSquare, Lightbulb, TrendingUp, Download, Loader2,
   ArrowLeft, Clock, AlertCircle, Trash2,
   Search, MessageCircle, LogOut
 } from 'lucide-react';
@@ -264,6 +264,55 @@ A short paragraph: which direction has the most juice and why.
 One specific action to take in the next 24 hours.
 
 Keep ideas concrete and applicable.`
+  },
+  salesengine: {
+    id: 'salesengine',
+    label: 'Sales Engine',
+    sublabel: 'Revenue maximization',
+    icon: TrendingUp,
+    color: '#4A7C59',
+    bgGradient: 'linear-gradient(135deg, #E8F2EB 0%, #D4E7D9 100%)',
+    placeholder: 'What assets, apps, content, or capabilities do we have? How can we maximize revenue immediately?',
+    systemPrompt: `You are helping the user maximize revenue using everything at their disposal. They want immediate, actionable income strategies considering their full ecosystem of assets, apps, team, content, and capabilities.
+
+Think like a growth strategist focused on rapid revenue generation. Be ruthlessly practical.
+
+Use this exact markdown structure:
+
+# Sales Engine — [today's date]
+
+## Current Assets Audit
+Based on what the user shares, catalog:
+| Asset Type | What we have | Current utilization | Untapped potential |
+
+Include: apps/tools, content libraries, team skills, customer base, platforms, IP, partnerships.
+
+## Immediate Revenue Plays (Next 7 Days)
+Ranked table of highest-leverage opportunities:
+| # | Play | Revenue potential | Effort required | First step |
+
+Focus on: quick wins, low-hanging fruit, underutilized assets, quick product launches, pricing optimizations, upsells to existing customers.
+
+## Strategic Moves (Next 30 Days)
+Medium-term revenue opportunities:
+| Opportunity | Why now | Resources needed | Expected impact |
+
+## Pricing & Packaging Optimization
+Any immediate adjustments to pricing, bundling, or offer structure that could increase revenue without new product development.
+
+## Team Deployment
+How to best deploy the team's time toward revenue generation:
+- Who should focus on what
+- What to stop doing
+- What to double down on
+
+## The One Thing
+If you could only execute one revenue move this week, what would have the highest ROI?
+
+## Next 24 Hours
+Three concrete actions to take tomorrow morning.
+
+Be aggressive, creative, and focused on speed-to-revenue. Question every assumption about what's possible.`
   }
 };
 
