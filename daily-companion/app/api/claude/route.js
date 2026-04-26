@@ -6,10 +6,6 @@ const client = new Anthropic({
 });
 
 export async function POST(request) {
-  if (!isAuthenticated()) {
-    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
-  }
-
   try {
     const body = await request.json();
     const { prompt, maxTokens = 2000 } = body;
