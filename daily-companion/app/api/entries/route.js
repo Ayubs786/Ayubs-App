@@ -1,12 +1,7 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
-import { isAuthenticated } from '@/lib/auth';
 
 export async function GET() {
-  if (!isAuthenticated()) {
-    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
-  }
-
   const { data, error } = await supabaseAdmin
     .from('entries')
     .select('id, created_at, mode, mode_label, input, output')
@@ -20,10 +15,6 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  if (!isAuthenticated()) {
-    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
-  }
-
   try {
     const body = await request.json();
     const { mode, modeLabel, input, output } = body;
@@ -34,20 +25,16 @@ export async function POST(request) {
 
     const { data, error } = await supabaseAdmin
       .from('entries')
-      .insert({
-        mode,
-        mode_label: modeLabel,
-        input,
-        output,
-      })
+      .insert({ mode, mode_label: modeLabel, input, output })
       .select()
       .single();
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
+
     return NextResponse.json({ entry: data });
   } catch (e) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json({ error: e.message || 'Failed' }, { status: 500 });
   }
 }
