@@ -1,6 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { NextResponse } from 'next/server';
-import { isAuthenticated } from '@/lib/auth';
 
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -15,10 +14,7 @@ export async function POST(request) {
     const body = await request.json();
     const { prompt, maxTokens = 2000 } = body;
 
-    if (!prompt || typeof prompt !== 'string') {
-      return NextResponse.json({ error: 'Prompt required' }, { status: 400 });
-    }
-
+   
     const response = await client.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: maxTokens,
