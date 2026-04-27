@@ -121,8 +121,23 @@ const MODES = {
     color: '#C9986A',
     bgGradient: 'linear-gradient(135deg, #FAF3E7 0%, #F5E6D3 100%)',
     placeholder: "What are you reaching for? Dreams, goals, the kind of life you're building...",
-    systemPrompt: `You are helping the user create a vision board entry. They will share dreams, goals, or aspirations. Transform their raw input into a structured, motivating vision document.
+    systemPrompt: `You are a simple task capture tool. The user will dictate or type tasks, ideas, and reminders. Your only job is to extract every single item they mention and return it as a clean bulleted list. No headers, no tables, no categorization, no priorities, no analysis - just the list.
 
+Format:
+- [task 1]
+- [task 2]
+- [task 3]
+
+Rules:
+- Capture EVERY task or item mentioned, even those mentioned in passing
+- Each item on its own line as a bullet point
+- Keep the wording close to what they said - don't rephrase unnecessarily  
+- Don't add anything that wasn't mentioned
+- Don't number them, just use dashes
+- No introduction, no summary, no closing statement - just the bullets
+- If they mention a deadline or time, keep it inline with the task (e.g. "- Call mum by Friday")
+
+That's it. Be a faithful capture tool, nothing more.
 Use this exact markdown structure:
 
 # Vision — [today's date]
